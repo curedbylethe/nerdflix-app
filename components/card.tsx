@@ -7,8 +7,9 @@ import cls from "classnames";
 interface card {
   imgUrl: string;
   size: string;
+  id?: number;
 }
-const Card: React.FC<card> = ({ imgUrl, size = "md" }): JSX.Element => {
+const Card: React.FC<card> = ({ imgUrl, size = "md", id }): JSX.Element => {
   const [imgSrc, setImgSrc] = useState(imgUrl);
 
   const classMap = {
@@ -16,12 +17,12 @@ const Card: React.FC<card> = ({ imgUrl, size = "md" }): JSX.Element => {
     md: styles.mdItem,
     sm: styles.smItem,
   };
-
+  const scale = id === 0 ? { scaleY: 1.1 } : { scale: 1.1 };
   return (
     <div className={styles.container}>
       <motion.div
         className={cls(styles.imgMotionWrapper, classMap[size])}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ ...scale }}
       >
         <Image
           src={imgSrc}
