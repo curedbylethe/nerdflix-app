@@ -8,8 +8,6 @@ interface navbar {
   userName: string;
 }
 export default function NavBar(props: navbar) {
-  const [dropDownState, setDropDownState] = useState(false);
-
   return (
     <div className="fixed top-0 z-50 justify-between w-full bg-gradient-to-b from-white dark:from-gray-700 to-transparent">
       <div className="flex p-5 pl-4 pr-4 md:pl-16 md:pr-16 md:flex-row md:items-center">
@@ -17,36 +15,43 @@ export default function NavBar(props: navbar) {
         <NavbarItems />
         <nav className="flex items-start ml-auto">
           <div>
-            <Button
-              userName={props.userName}
-              dropDownState={dropDownState}
-              setDropDownState={setDropDownState}
-            />
-            {/* dropdown */}
-            {dropDownState && <DropDown />}
-            {/* dropdown */}
+            <DropDown userName={props.userName} />
           </div>
         </nav>
       </div>
     </div>
   );
 }
-
 NavBar.propTypes = {
   userName: PropTypes.string,
 };
 
-const DropDown = () => {
+const DropDown = (props) => {
+  const [dropDownState, setDropDownState] = useState(false);
+
   return (
-    <div className="absolute pt-1 pb-1 pl-1 pr-1 transition border-2 border-solid shadow-md shadow-netflix-red hover:scale-105 bg-slate-800 border-slate-700">
-      <div>
-        <Link href="/login">
-          <a className="block pl-2 pr-2 leading-5 transition duration-200 cursor-pointer hover:underline">
-            Sign Out
-          </a>
-        </Link>
-        <div className="pt-2 pb-2 "></div>
-      </div>
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" class="btn btn-link rounded-btn">
+        <Button
+          userName={props.userName}
+          dropDownState={dropDownState}
+          setDropDownState={setDropDownState}
+        />
+      </label>
+      {dropDownState && (
+        <div>
+          <ul
+            tabindex="0"
+            class="menu dropdown-content p-2 shadow bg-base-100 dark:bg-slate-800 rounded-box w-52 mt-4"
+          >
+            <li>
+              <Link href="/login">
+                <a>Sign out</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
@@ -108,9 +113,9 @@ const Button: React.FC<button> = ({
   return (
     <div>
       <button
-        className="flex overflow-hidden text-white align-middle"
+        className="flex overflow-hidden text-black align-middle dark:text-white"
         onClick={() => {
-          dropDownState ? setDropDownState(false) : setDropDownState(true);
+          !dropDownState ? setDropDownState(true) : setDropDownState(false);
         }}
       >
         <p className="text-lg">
