@@ -11,7 +11,7 @@ export default function NavBar(props: navbar) {
   const [dropDownState, setDropDownState] = useState(false);
 
   return (
-    <div className="fixed top-0 z-50 justify-between w-full bg-gradient-to-b from-black to-transparent">
+    <div className="fixed top-0 z-50 justify-between w-full bg-gradient-to-b from-white dark:from-gray-700 to-transparent">
       <div className="flex p-5 pl-4 pr-4 md:pl-16 md:pr-16 md:flex-row md:items-center">
         <Logo />
         <NavbarItems />
