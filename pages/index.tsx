@@ -10,10 +10,10 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Evil Netflix</title>
+        <title>NERDFLIX</title>
         <meta
           name="description"
-          content="Browse and watch your favorite YouTube videos on this Netflix clone that looks nothing like Netflix."
+          content="Browse and watch your favorite YouTube tutorials on mathematics, chemistry, physics and computer science."
         />
       </Head>
       <NavBar userName="curedbylethe" />
