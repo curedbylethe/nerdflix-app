@@ -2,7 +2,12 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import styles from "../styles/banner.module.css";
 
-export default function Banner({ title, subTitle, imgUrl }) {
+interface banner {
+  title: string,
+  subTitle: string,
+  imgUrl?: string,
+}
+const Banner: React.FC<banner> = ({ title, subTitle, imgUrl }): JSX.Element => {
   return (
     <div className={styles.container}>
       <LeftWrapper title={title} subTitle={subTitle} />
@@ -22,7 +27,7 @@ Banner.propTypes = {
   imgUrl: PropTypes.string.isRequired,
 };
 
-const LeftWrapper = ({ title, subTitle }) => {
+const LeftWrapper: React.FC<banner> = ({ title, subTitle }): JSX.Element => {
   return (
     <div className={styles.leftWrapper}>
       <div className={styles.left}>
@@ -56,3 +61,5 @@ const NSeries = () => {
     </div>
   );
 };
+
+export default Banner;

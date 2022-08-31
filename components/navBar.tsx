@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useRouter } from "next/router";
-export default function NavBar({ userName }) {
+
+interface navbar {
+  userName: string
+}
+export default function NavBar(props: navbar) {
   const [dropDownState, setDropDownState] = useState(false);
 
   return (
@@ -14,7 +18,7 @@ export default function NavBar({ userName }) {
         <nav className="flex items-start ml-auto">
           <div>
             <Button
-              userName={userName}
+              userName={props.userName}
               dropDownState={dropDownState}
               setDropDownState={setDropDownState}
             />
@@ -89,8 +93,12 @@ const Logo = () => {
     </div>
   );
 };
-
-const Button = ({ userName, dropDownState, setDropDownState }) => {
+interface button {
+  userName: string,
+  dropDownState: boolean,
+  setDropDownState: React.Dispatch<React.SetStateAction<boolean>>
+}
+const Button: React.FC<button> = ({ userName, dropDownState, setDropDownState }): ReactElement => {
   return (
     <div>
       <button
