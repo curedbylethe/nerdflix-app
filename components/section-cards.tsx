@@ -3,32 +3,22 @@ import Card from "./card";
 
 interface sectionCards {
   title: string;
-  imgUrl: string;
+  videos: any;
   size: string;
 }
 
 const SectionCards: React.FC<sectionCards> = ({
   title,
-  imgUrl,
+  videos = [],
   size,
 }): JSX.Element => {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.cardWrapper}>
-        <Card id={0} imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
-        <Card imgUrl={imgUrl} size={size} />
+        {videos.map((video, idx: number) => {
+          return <Card key={idx} id={idx} imgUrl={video.imgUrl} size={size} />;
+        })}
       </div>
     </section>
   );

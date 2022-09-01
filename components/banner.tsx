@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styles from "../styles/banner.module.css";
 
 interface banner {
-  title: string,
-  subTitle: string,
-  imgUrl?: string,
+  title: string;
+  subTitle: string;
+  imgUrl?: string;
 }
 const Banner: React.FC<banner> = ({ title, subTitle, imgUrl }): JSX.Element => {
   return (
@@ -19,7 +19,7 @@ const Banner: React.FC<banner> = ({ title, subTitle, imgUrl }): JSX.Element => {
       ></div>
     </div>
   );
-}
+};
 
 Banner.propTypes = {
   title: PropTypes.string.isRequired,
@@ -35,7 +35,7 @@ const LeftWrapper: React.FC<banner> = ({ title, subTitle }): JSX.Element => {
         <h3 className={styles.title}>{title}</h3>
         <h3 className={styles.subTitle}>{subTitle}</h3>{" "}
         <div className={styles.playBtnWrapper}>
-          <button className="px-6 py-2 ml-4 text-white rounded bg-netflix-red">
+          <button className="px-6 py-2 ml-4 text-black rounded dark:text-white bg-netflix-red">
             <span className="align-middle material-symbols-outlined">
               play_arrow
             </span>

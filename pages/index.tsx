@@ -1,13 +1,26 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Banner from "../components/banner";
-import Card from "../components/card";
-import NavBar from "../components/navBar";
+import NavBar from "../components/navBar/navBar";
 import SectionCards from "../components/section-cards";
+import { getVideos } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+  const mathVideos = await getVideos("Math%20Tutorial");
+  const physicsVideos = await getVideos("Interesting%20Physics");
+  const chemVideos = await getVideos("Cool%20Chemistry%20Experiments");
+  const csVideos = await getVideos("Programming%20Tutorial");
+
+  return { props: { mathVideos, physicsVideos, chemVideos, csVideos } };
+}
+
+const Home: NextPage = ({
+  mathVideos,
+  physicsVideos,
+  chemVideos,
+  csVideos,
+}) => {
   return (
     <div>
       <Head>
@@ -24,11 +37,10 @@ const Home: NextPage = () => {
         imgUrl="https://media.vanityfair.com/photos/60db6cbbba7beb43db9b1b29/3:2/w_1998,h_1332,c_limit/clifford-the-big-red-dog-film-still-01.jpg"
       />
       <div className={styles.sectionWrapper}>
-        <SectionCards
-          title="Mathematics"
-          imgUrl="https://media.vanityfair.com/photos/60db6cbbba7beb43db9b1b29/3:2/w_1998,h_1332,c_limit/clifford-the-big-red-dog-film-still-01.jpg"
-          size="lg"
-        />
+        <SectionCards title="Mathematics" videos={mathVideos} size="sm" />
+        <SectionCards title="Physics" videos={physicsVideos} size="sm" />
+        <SectionCards title="Chemistry" videos={chemVideos} size="sm" />
+        <SectionCards title="Computer Science" videos={csVideos} size="sm" />
       </div>
     </div>
   );
