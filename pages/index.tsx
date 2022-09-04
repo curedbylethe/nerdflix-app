@@ -3,7 +3,7 @@ import Head from "next/head";
 import Banner from "../components/banner";
 import NavBar from "../components/navBar/navBar";
 import SectionCards from "../components/section-cards";
-import { getVideos } from "../lib/videos";
+import { getPopularVideos, getVideos } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps() {
@@ -11,8 +11,10 @@ export async function getServerSideProps() {
   const physicsVideos = await getVideos("Interesting%20Physics");
   const chemVideos = await getVideos("Cool%20Chemistry%20Experiments");
   const csVideos = await getVideos("Programming%20Tutorial");
-
-  return { props: { mathVideos, physicsVideos, chemVideos, csVideos } };
+  const popularVideos = await getPopularVideos();
+  return {
+    props: { mathVideos, physicsVideos, chemVideos, csVideos, popularVideos },
+  };
 }
 
 const Home: NextPage = ({
@@ -20,9 +22,10 @@ const Home: NextPage = ({
   physicsVideos,
   chemVideos,
   csVideos,
+  popularVideos,
 }) => {
   return (
-    <div>
+    <div className={styles.main}>
       <Head>
         <title>NERDFLIX</title>
         <meta
@@ -41,6 +44,11 @@ const Home: NextPage = ({
         <SectionCards title="Physics" videos={physicsVideos} size="sm" />
         <SectionCards title="Chemistry" videos={chemVideos} size="sm" />
         <SectionCards title="Computer Science" videos={csVideos} size="sm" />
+        <SectionCards
+          title="What's Popular in Science Right Now"
+          videos={popularVideos}
+          size="sm"
+        />
       </div>
     </div>
   );
