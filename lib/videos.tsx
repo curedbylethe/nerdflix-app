@@ -24,7 +24,14 @@ interface data {
   description: string;
   imgUrl: string;
 }
-export const dataParser = (item): data => {
+export const dataParser = (item: {
+  id: { videoId: any };
+  snippet: {
+    title: string;
+    description: string;
+    thumbnails: { high: { url: string } };
+  };
+}): data => {
   const id = item.id?.videoId || item.id;
   let data = {
     title: item.snippet.title,

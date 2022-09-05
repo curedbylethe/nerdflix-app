@@ -12,8 +12,8 @@ const DropDown: React.FC<dropdown> = ({ userName }) => {
   const router = useRouter();
 
   return (
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-link rounded-btn">
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-link rounded-btn">
         <Button
           userName={userName}
           dropDownState={dropDownState}
@@ -23,8 +23,8 @@ const DropDown: React.FC<dropdown> = ({ userName }) => {
       {dropDownState && (
         <div>
           <ul
-            tabindex="0"
-            class="menu dropdown-content p-2 shadow bg-base-100 dark:bg-slate-800  rounded-box w-52 mt-4"
+            tabIndex={0}
+            className="p-2 mt-4 shadow menu dropdown-content bg-base-100 dark:bg-slate-800 rounded-box w-52"
           >
             <li className="lg:text-base md:text-base dark:hover:bg-slate-700 sm:text-sm">
               <Link href="/login">

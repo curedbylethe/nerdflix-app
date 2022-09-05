@@ -12,7 +12,7 @@ interface card {
 const Card: React.FC<card> = ({ imgUrl, size = "md", id }): JSX.Element => {
   const [imgSrc, setImgSrc] = useState(imgUrl);
 
-  const classMap = {
+  const classMap: { [key: string]: string } = {
     lg: styles.lgItem,
     md: styles.mdItem,
     sm: styles.smItem,
