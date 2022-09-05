@@ -17,13 +17,19 @@ export async function getServerSideProps() {
   };
 }
 
-const Home: NextPage = ({
+const Home = ({
   mathVideos,
   physicsVideos,
   chemVideos,
   csVideos,
   popularVideos,
-}) => {
+}: {
+  mathVideos: any;
+  physicsVideos: any;
+  chemVideos: any;
+  csVideos: any;
+  popularVideos: any;
+}): JSX.Element => {
   return (
     <div className={styles.main}>
       <Head>
